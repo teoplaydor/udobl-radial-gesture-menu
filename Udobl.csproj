@@ -1,0 +1,57 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net48</TargetFramework>
+    <LangVersion>9.0</LangVersion>
+    <Nullable>disable</Nullable>
+    <AssemblyName>Udobl</AssemblyName>
+    <RootNamespace>Udobl</RootNamespace>
+    <StartupObject>Udobl.Program</StartupObject>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+
+    <Product>Udobl</Product>
+    <AssemblyTitle>Udobl — Radial Gesture Menu</AssemblyTitle>
+    <Company>Udobl</Company>
+    <Version>1.0.0</Version>
+    <FileVersion>1.0.0</FileVersion>
+
+    <Deterministic>true</Deterministic>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <DebugType>embedded</DebugType>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+    <NoWarn>$(NoWarn);CA1416;NU1701</NoWarn>
+  </PropertyGroup>
+
+  <!-- Pure-code WPF: we reference the WPF assemblies directly instead of using
+       <UseWPF>, so no XAML compilation toolchain is required. This builds on a
+       plain machine with just the .NET SDK + the net48 reference assemblies. -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
+    <!-- Real Direct3D 11 (managed binding; P/Invokes system d3d11.dll/dxgi.dll — no native package). -->
+    <PackageReference Include="SharpDX" Version="4.2.0" />
+    <PackageReference Include="SharpDX.DXGI" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Direct3D11" Version="4.2.0" />
+    <PackageReference Include="SharpDX.D3DCompiler" Version="4.2.0" />
+    <PackageReference Include="SharpDX.Mathematics" Version="4.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Precompiled HLSL pixel shader (compiled once with fxc; build needs only the .NET SDK). -->
+    <EmbeddedResource Include="shaders\refract.ps" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationTypes" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+# Build output
+bin/
+obj/
+dist/
+.vs/
+*.user
+*.suo
+
+# Runtime/personal data (do NOT publish)
+usage.json
+config.json
+udobl.portable
+
+# Compiled binaries
+*.exe
+*.dll
+*.pdb
